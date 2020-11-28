@@ -15,7 +15,7 @@ namespace Giraffe
             while (playing == true)
             {
                 Console.WriteLine("\nWe've got several very exciting games to choose from.\nWhich would you like to try?");
-                Console.WriteLine("\nbigger number(1)\ncalculator(2)\nmad libs(3)\nget day(4)\nguess word(5)\nexponenter(6)");
+                Console.WriteLine("\nbigger number(1)\ncalculator(2)\nmad libs(3)\nget day(4)\nguess word(5)\nexponenter(6)\nbiggest book(7)");
                 string chosenGame = Console.ReadLine().ToLower().Trim();
                 if (chosenGame == "bigger number" || chosenGame == "1")
                 {
@@ -41,6 +41,10 @@ namespace Giraffe
                 {
                     Exponenter();
                 }
+                else if (chosenGame == "book maker" || chosenGame == "7")
+                {
+                    BiggestBook();
+                }
                 Console.WriteLine("\nAre you having fun?");
                 if (Console.ReadLine() == "no")
                 {
@@ -65,11 +69,12 @@ namespace Giraffe
             if (num1 > num2 || num2 > num1)
             {
                 Console.WriteLine(Math.Max(num1, num2) + " is bigger than " + Math.Min(num1, num2) + ".");
-            } else
+            }
+            else
             {
                 Console.WriteLine("Those are the same number, you trickster!");
             }
-            
+
         }
 
         static void Calculator()
@@ -86,16 +91,20 @@ namespace Giraffe
             if (operation == "add" || operation == "+")
             {
                 Console.WriteLine(num1 + num2);
-            } else if (operation == "subtract" || operation == "-")
+            }
+            else if (operation == "subtract" || operation == "-")
             {
                 Console.WriteLine(num1 - num2);
-            } else if (operation == "multiply" || operation == "*" || operation.ToLower() == "x")
+            }
+            else if (operation == "multiply" || operation == "*" || operation.ToLower() == "x")
             {
                 Console.WriteLine(num1 * num2);
-            } else if (operation == "divide" || operation == "/")
+            }
+            else if (operation == "divide" || operation == "/")
             {
                 Console.WriteLine(num1 / num2);
-            } else
+            }
+            else
             {
                 Console.WriteLine("You did that wrong. Go away.");
             }
@@ -168,7 +177,7 @@ namespace Giraffe
             int guessCount = 0;
             Console.WriteLine("Okay, welcome to Guess Word. This is actually a very cool game that everyone loves.\nI hope you have never played this before.");
             Console.WriteLine("Here's a hint: This word is a flower and a babies name.");
-            
+
             while (guessCount < 3 && playing == true)
             {
                 Console.Write("Your guess: ");
@@ -187,13 +196,14 @@ namespace Giraffe
                         {
                             playing = false;
                         }
-                    } else
+                    }
+                    else
                     {
                         Console.WriteLine("I'm pretty sure you lost. Sorry.\n");
                     }
                 }
             }
-            
+
         }
 
         static void Exponenter()
@@ -209,6 +219,39 @@ namespace Giraffe
                 solution *= num1;
             }
             Console.WriteLine("\n" + num1 + " to the power of " + num2 + " is " + solution);
+        }
+
+        static void BiggestBook()
+        {
+            Book book1 = new Book("Harry Potter", "JK Rowling", 293);
+            Book book2 = new Book("Eragon", "Christopher Paolini", 530);
+            Book book3 = new Book("The Goose Girl", "Shannon Hale", 432);
+
+            Console.WriteLine("\nWelcome to Biggest Book! This is not a fun game.");
+            Console.WriteLine("Can you tell me, which of these three books has the most pages?");
+
+            Console.WriteLine("(a) " + book1.title);
+            Console.WriteLine("(b) " + book2.title);
+            Console.WriteLine("(c) " + book3.title);
+            bool playing = true;
+            while (playing == true)
+            {
+                Console.Write("\nYour guess: ");
+                string guess = Console.ReadLine();
+                if (guess == "b" || guess == "Eragon")
+                {
+                    Console.WriteLine("Wow, I guess you like books. Neat.");
+                    playing = false;
+                } else
+                {
+                    Console.WriteLine("You're actually wrong. Thanks.\nWant to play again?(yes/no)");
+                    if (Console.ReadLine() == "no")
+                    {
+                        Console.WriteLine("Okay, bye.");
+                        playing = false;
+                    }
+                }
+            }
         }
     }
 }
